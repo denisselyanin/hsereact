@@ -56,8 +56,6 @@ class MyToDoList extends React.Component {
    }
 }
 
-const tasks = [task1, task2, task3, task4, task5, task6]
-
 const Item = ({task}) => {
   const press = () => {
     console.log('Task ' + task.id + ' completed status = ' + task.completed)
