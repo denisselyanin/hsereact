@@ -1,3 +1,7 @@
+.AllTasks {
+  position: absolute;
+}
+
 .Task {
   position: relative;
   left: 35%;
@@ -32,4 +36,13 @@
   height: 50px;
   background-color: rgb(214, 245, 39);
   width: 100%
+}
+
+.Input {
+  width: 100px;
+}
+
+.AddButton {
+  width: 215px;
+  background-color: rgb(212, 245, 215);
 }
