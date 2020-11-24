@@ -1,0 +1,44 @@
+.Container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+  
+  .Task {
+    text-align: center;
+    line-height: 50px;
+    width: 300px;
+  
+  }
+  
+  .Name {
+    height: 50px;
+    background-color: rgb(122, 115, 115);
+  }
+  
+  .Description {
+    height: 50px;
+    background-color: rgb(129, 243, 196);
+  }
+  
+  .Completed {
+    height: 50px;
+
+    &-is-true {
+        background-color: rgb(0, 255, 34);
+        }
+    
+    background-color:rgb(255, 0, 0);
+  }
+  
+  .Button {
+    height: 50px;
+    background-color: rgb(214, 245, 39);
+    width: 100%;
+
+    &:hover {
+        transform:scale(1.001, 1.001);
+        height: 55px;
+        };
+  }
+  
