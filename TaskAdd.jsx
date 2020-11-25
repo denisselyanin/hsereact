@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.css'
 
 import classNames from 'classnames/bind'
 import styles from "./TaskAdd.module.scss"
@@ -10,19 +11,19 @@ export const TaskAdd = ({
   onChangeName,
   onChangeDescription
 
- }) =>  (
-     <div>
-       <input
-         className={cx("Input")}
-         value={name}
-         onChange={onChangeName}
-         placeholder="name"
-       />
-       <input
-         className={cx("Input")}
-         value={description}
-         onChange={onChangeDescription}
-         placeholder="description"
-       />
-     </div>
-   )
+ }) => (
+  <div>
+    <input
+      className={cx("Input")}
+      value={name}
+      onChange={onChangeName}
+      placeholder="name"
+    />
+    <input 
+      className={cx("Input")}
+      value={description}
+      onChange={onChangeDescription}
+      placeholder="description"
+    />
+  </div>
+)

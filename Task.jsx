@@ -13,9 +13,9 @@ export const DrawTask = ({ task, buttFunc}) => {
   
   return (
     <div className={cx("Task")}>
-      <div className={cx("Name")}>{task.name}</div>
+    <div className={cx("Name")}>{task.name}</div>
       <div className={cx("Description")}>{task.description}</div>
-       <div className={cx("Completed", `Completed-is-${task.completed}`)}>{task.completed ? "complete" : "incomplete"}</div> 
+      <div className={cx("Completed", `Completed-is-${task.completed}`)}>{task.completed ? "complete" : "incomplete"}</div> 
       <button className={cx("Button", `Button`)} onClick={chStat}>Change Status</button>
     </div>
   )
