@@ -1,0 +1,38 @@
+.Task {
+    text-align: center;
+    line-height: 50px;
+    width: 300px;
+    }
+  
+.Name {
+    height: 50px;
+    background-color: rgb(122, 115, 115);
+    }
+  
+.Description {
+    height: 50px;
+    background-color: rgb(129, 243, 196);
+    }
+  
+.Completed {
+    height: 50px;
+
+    &-is-true {
+        background-color: rgb(0, 255, 34);
+        }
+    
+    background-color:rgb(255, 0, 0);
+    }
+  
+.Button {
+    height: 50px;
+    background-color: rgb(214, 245, 39);
+    width: 100%;
+    border: 1px solid black;;
+
+    &:hover {
+        border: 3px solid black;
+        height: 55px;
+        };
+    }
+  

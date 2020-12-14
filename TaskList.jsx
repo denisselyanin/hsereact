@@ -1,7 +1,10 @@
 import React from 'react'
-import { DrawTask } from './Task'
-import { TaskAdd } from './TaskAdd'
-import './App.css'
+import { DrawTask } from './Task.jsx'
+import { TaskAdd } from './TaskAdd.jsx'
+
+import classNames from 'classnames/bind'
+import styles from "./TaskList.module.scss"
+const cx = classNames.bind(styles)
 
 export class ToDoList extends React.Component {
   state = {
@@ -84,26 +87,29 @@ changeStatus = find_task => {
     const change_index = this.state.tasks.findIndex(isEq)
     const new_tasks = [...this.state.tasks]
 
-    const new_task = find_task
+    const new_task = { ...find_task }
     new_task.completed = !new_task.completed
     new_tasks[change_index] = new_task
 
     this.setState({tasks: new_tasks})
 }
 
- render() {
-   return (
-     <div>
-       <TaskAdd 
-       name={this.state.input_task.name}
-       description={this.state.input_task.description}
-       onChangeName={this.changeName}
-       onChangeDescription={this.changeDescription}
-       />
-       <button
-        className="AddButton"
-        onClick={this.addTask}>Add Task</button>
-       {this.state.tasks.map(it => <DrawTask task={it} buttFunc={this.changeStatus}/>)}
+render() {
+  return (
+    <div>
+      <TaskAdd 
+        name={this.state.input_task.name}
+        description={this.state.input_task.description}
+        onChangeName={this.changeName}
+        onChangeDescription={this.changeDescription}
+      />
+      <button
+        className={cx("Button")}
+        onClick={this.addTask}>Add Task
+      </button>
+      <div className={cx("Container")}> 
+        {this.state.tasks.map(it => <DrawTask task={it} buttFunc={this.changeStatus}/>)}
+      </div>
      </div>
    )
  }  
