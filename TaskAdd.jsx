@@ -10,7 +10,6 @@ export const TaskAdd = ({
   description,
   onChangeName,
   onChangeDescription
-
  }) => (
   <div>
     <input
@@ -27,3 +26,4 @@ export const TaskAdd = ({
     />
   </div>
 )
+

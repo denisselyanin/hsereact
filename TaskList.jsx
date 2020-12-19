@@ -4,113 +4,65 @@ import { TaskAdd } from './TaskAdd.jsx'
 
 import classNames from 'classnames/bind'
 import styles from "./TaskList.module.scss"
+
+import { connect } from 'react-redux'
+import { handleStatusChange, handleAddTask, handleDescriptionChange, handleNameChange} from './actions.js'
 const cx = classNames.bind(styles)
 
-export class ToDoList extends React.Component {
-  state = {
-    tasks: [{
-      id: 1,
-      name: "task1",
-      description: "to do 1",
-      completed: true
-    },
-    {
-      id: 2,
-      name: "task2",
-      description: "to do 2",
-      completed: true
-    },
-    
-    {
-      id: 3,
-      name: "task3",
-      description: "to do 3",
-      completed: true
-    },
-    
-    {
-      id: 4,
-      name: "task4",
-      description: "to do 4",
-      completed: false
-    },
-    
-    {
-      id: 5,
-      name: "task5",
-      description: "to do 5",
-      completed: true
-    }],
+const mapStateToProps = (state) => ({
+  tasks: state.tasks,
+  input_task: state.input_task,
+})
 
-    input_task: {
-      id: 0,
-      name: "",
-      description: "",
-      completed: false
-    }
- }
- changeName = event => {
-  const {value} = event.target
+const mapDispatchToProps = (dispatch) => ({
+  dispatchOnStatusChange: (find_task) => dispatch(handleStatusChange(find_task)),
+  dispatchOnAddTask: (input_task) => dispatch(handleAddTask(input_task)),
+  dispatchOnNameChange: (name) => dispatch(handleNameChange(name)),
+  dispatchOnDescriptionChange: (description) => dispatch(handleDescriptionChange(description))
+})
+
+const ToDoListComponent = ({ 
+  tasks, 
+  input_task, 
+  dispatchOnStatusChange,
+  dispatchOnAddTask,
+  dispatchOnNameChange,
+  dispatchOnDescriptionChange
   
-  this.setState(currentState => (
-    {
-    input_task: {...currentState.input_task, name: value}
-    }
-    ))
-} 
+  }) => {
 
-changeDescription = event => {
-  const {value} = event.target
-
-  this.setState(currentState => (
-    {
-    input_task: {...currentState.input_task,
-       description: value}
-    }
-    ))
-} 
- addTask = () => {
-  const new_task = {...this.state.input_task} 
-  new_task.id = this.state.tasks.length
-  new_task.completed = false
-  this.state.input_task = new_task 
-  this.setState(currentState => {
-    const new_tasks = [...currentState.tasks, currentState.input_task]
-    return {tasks: new_tasks}
-  });
+ const changeName = (event) => {
+  dispatchOnNameChange(event.target.value)
 }
 
-changeStatus = find_task => {
-    function isEq(some_task) {
-      return some_task === find_task
-    }
-    const change_index = this.state.tasks.findIndex(isEq)
-    const new_tasks = [...this.state.tasks]
-
-    const new_task = { ...find_task }
-    new_task.completed = !new_task.completed
-    new_tasks[change_index] = new_task
-
-    this.setState({tasks: new_tasks})
+const changeDescription = (event) => {
+  dispatchOnDescriptionChange(event.target.value)
+}
+ const addTask = () => {
+  dispatchOnAddTask(input_task)
 }
 
-render() {
+const changeStatus = (find_task) => {
+    dispatchOnStatusChange(find_task)
+}
+
   return (
     <div>
       <TaskAdd 
-        name={this.state.input_task.name}
-        description={this.state.input_task.description}
-        onChangeName={this.changeName}
-        onChangeDescription={this.changeDescription}
+        name={input_task.name}
+        description={input_task.description}
+        onChangeName={changeName}
+        onChangeDescription={changeDescription}
       />
       <button
         className={cx("Button")}
-        onClick={this.addTask}>Add Task
+        onClick={addTask}>Add Task
       </button>
       <div className={cx("Container")}> 
-        {this.state.tasks.map(it => <DrawTask task={it} buttFunc={this.changeStatus}/>)}
+        {tasks.map(it => <DrawTask task={it} buttFunc={changeStatus}/>)}
       </div>
      </div>
    )
- }  
 }
+
+export const ToDoList = connect(mapStateToProps, mapDispatchToProps)(ToDoListComponent)
